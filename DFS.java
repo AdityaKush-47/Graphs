@@ -43,7 +43,14 @@ public class DFS {
 
     }
 
-    public static void dfs(ArrayList<Edge> []graph,int curr,boolean []visited) {
+    public static void dfs(ArrayList<Edge> graph[]) {
+        boolean []visited = new boolean[graph.length];
+        for (int i = 0; i < graph.length; i++) {
+            dfsUtil(graph, i, visited);
+        }
+    }
+
+    public static void dfsUtil(ArrayList<Edge> []graph,int curr,boolean []visited) {
 
         System.out.print(curr + " ");
         visited[curr] = true;
@@ -51,7 +58,7 @@ public class DFS {
         for(int i = 0;i<graph[curr].size();i++) {
             Edge e = graph[curr].get(i);
             if(!visited[e.dest]) {
-                dfs(graph, e.dest, visited);
+                dfsUtil(graph, e.dest, visited);
             }
         }
     }
@@ -74,8 +81,8 @@ public class DFS {
         @SuppressWarnings("unchecked")
         ArrayList<Edge>[] graph = new ArrayList[V];
         createGraph(graph);
-        boolean visited[] = new boolean[graph.length];
-        dfs(graph, graph[0].get(0).src, visited);
+        // boolean visited[] = new boolean[graph.length];
+        dfs(graph);
         System.out.println(hasPath(graph, 0, 5, new boolean[V]));
     }
 }

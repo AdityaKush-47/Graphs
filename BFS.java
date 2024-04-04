@@ -43,12 +43,19 @@ public class BFS {
 
     }
 
-    public static void bfs(ArrayList<Edge>[] graph) {
-        Queue<Integer> q = new LinkedList<>();
+    public static void bfs(ArrayList<Edge> graph[]) {
         boolean[] visited = new boolean[graph.length];
-        q.add(graph[5].get(0).src);
-        // visited[graph[0].get(0).src] = true;
+        for (int i = 0; i < graph.length; i++) {
+            if(!visited[i]) {
+                bfsUtil(graph, visited);
+            }
+        }
+    }
 
+    public static void bfsUtil(ArrayList<Edge>[] graph,boolean visited[]) {
+        Queue<Integer> q = new LinkedList<>();
+        
+        q.add(graph[5].get(0).src);
         while (!q.isEmpty()) {
             int curr = q.poll();
             if (!visited[curr]) {
@@ -65,6 +72,7 @@ public class BFS {
     public static void main(String[] args) {
 
         int V = 7;
+        @SuppressWarnings("unchecked")
         ArrayList<Edge>[] graph = new ArrayList[V];
         createGraph(graph);
         bfs(graph);
