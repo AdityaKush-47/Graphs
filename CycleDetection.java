@@ -4,7 +4,8 @@ public class CycleDetection {
     static class Edge {
         int src;
         int dest;
-        public Edge(int src,int dest) {
+
+        public Edge(int src, int dest) {
             this.src = src;
             this.dest = dest;
         }
@@ -31,11 +32,11 @@ public class CycleDetection {
         graph[4].add(new Edge(4, 3));
     }
 
-    public static boolean detectCycle(ArrayList<Edge> []graph) {
-        boolean []visited = new boolean[graph.length];
+    public static boolean detectCycle(ArrayList<Edge>[] graph) {
+        boolean[] visited = new boolean[graph.length];
         for (int i = 0; i < graph.length; i++) {
-            if(!visited[i]) {
-                if(detectCycleUtil(graph,i,-1,visited)) {
+            if (!visited[i]) {
+                if (detectCycleUtil(graph, i, -1, visited)) {
                     return true;
                 }
             }
@@ -43,23 +44,23 @@ public class CycleDetection {
         return false;
     }
 
-    public static boolean detectCycleUtil(ArrayList<Edge> []graph,int curr,int par,boolean []visited) {
+    public static boolean detectCycleUtil(ArrayList<Edge>[] graph, int curr, int par, boolean[] visited) {
         visited[curr] = true;
         for (int i = 0; i < graph[curr].size(); i++) {
             Edge e = graph[i].get(i);
-            if(!visited[e.dest]) {
-                if(detectCycleUtil(graph, e.dest, curr, visited)) {
+            if (!visited[e.dest]) {
+                if (detectCycleUtil(graph, e.dest, curr, visited)) {
                     return true;
                 }
-            }
-            else if(visited[e.dest] && e.dest != par) {
+            } else if (visited[e.dest] && e.dest != par) {
                 return true;
             }
         }
         return false;
     }
+
     public static void main(String[] args) {
-        
+
         int V = 5;
         @SuppressWarnings("unchecked")
         ArrayList<Edge> graph[] = new ArrayList[V];

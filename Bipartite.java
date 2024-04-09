@@ -62,11 +62,11 @@ public class Bipartite {
 
     // Bipartite 2
     // public static boolean isBipartite2(ArrayList<Edge>[] graph) {
-    //     if(!detectCycle(graph)) {
-    //         return true;
-    //     } else {
-            
-    //     }
+    // if(!detectCycle(graph)) {
+    // return true;
+    // } else {
+
+    // }
 
     // }
 
